@@ -67,8 +67,3 @@ Here are the top 5 results from the model:
 5. amount of cleaning fees
 
 Especially whether you choose an entire home or a private room seems to have a big influence. The next important parameters are the number of accommodates and bedrooms and last in the list is the amount of cleaning fees you have to pay.
-
-
-
-
-![Kitten]({{ site.baseurl }}/images/price_per_day.png "A cute kitten"){: style="float: left"; margin-right: 10em; height="25%" width="25%"} ## Some Text On Left!<br>Some Text On Left!<br><br>Some Text On Left!Some Text On Left!Some Text

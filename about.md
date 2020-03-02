@@ -4,8 +4,4 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
-
-### More Information
-
-A place to include any other types of information that you'd like to include about yourself.
+I am currently taking the Udacity Data Science nano degree. One of the projects in the second term challenges us to find a dataset of our interest, come up with 3 questions, analyze the dataset, answer the questions and write a blog post summarizing our findings.

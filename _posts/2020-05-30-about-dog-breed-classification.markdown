@@ -17,7 +17,7 @@ The particular steps to be taken in the notebook are:
 3) [Detection of dogs](#Detect_Dog)  
 4) [A convolutional neural network (CNN) for classification from scratch](#Setup_CNN)  
 5) [Training of an existing CNN for classification using transfer learning](#Existing_Transfer)  
-6) Setup & training of a new CNN for classification using transfer learning  
+6) [Setup & training of a new CNN for classification using transfer learning](#New_Transfer)  
 7) Implementation of the whole classification algorithm  
 8) Test of the algorithm  
 
@@ -58,7 +58,7 @@ How good does this work?
 To find out the performance of the model,
 the model was tested on the same data set made up of 100 dog and 100 human face images used already before.
 The results are:
-* 0% of the human face images where falsely  detected as dogs
+* 0% of the human face images where falsely detected as dogs
 * 100% of the dog images where correctly detected as dogs  
 
 ## A convolutional neural network (CNN) for classification from scratch <a name="Setup_CNN"></a>
@@ -104,9 +104,26 @@ Total params: 2,578,241
 Trainable params: 2,578,241  
 Non-trainable params: 0  
 
-After training the model for 25 epochs, the achieved accuracy on the test dataset was 12.68%.
+After training the model for 25 epochs, the achieved accuracy on the test dataset was 12.67%.
 
 
 ## Training of an existing CNN for classification using transfer learning <a name="Existing_Transfer"></a>
 The training time was about 25 minutes on the GPU provided by Udacity while the achieved accuracy still
 leaves much space for improvements.
+Maybe more training time and a larger data set could improve the model performance.
+Here the method of 'transfer learning' can help:  
+At first, a pre-trained CNN, in this case the [VGG-16](https://neurohive.io/en/popular-networks/vgg16/) model is taken and
+the last dense layers, mainly responsible for classification of the features detected by the CNN layers before, are cut away.
+Then the remaining CNN is applied on the new dog dataset is and the outputs of the last layer are saved as so called 'bottleneck-features'.  
+These bottleneck-features are then used to train a new dense layer, which replaces the former dense layer of the VGG-16 dataset.
+The combination of pre-trained CNN and new dense layer can then form a new model with better performance than the one trained in in the section before.  
+Here is a summary of the new dense layer:
+
+**Model summary:**  
+|**Layer (type)**   |      **Output Shape**  | **Param #** |
+|:-----------------:|:----------------------:|:--------:|
+| Global Average Pooling   |  (None, 512)      |       0     |
+| Dense                    |  (None, 133)      |   68229     |
+|<img width=200px/> | <img width=200px/>     |<img width=200px/> |  
+
+Training the model just to about 40 seconds and while the accuracy on the test dataset is now 43.6% compared to 12.7% in our first try.

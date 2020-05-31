@@ -93,7 +93,7 @@ It has the following architecture:
 | Dense             |  (None, 200)           |  40200   |  
 | Dropout           |  (None, 200)           |    0     |
 | Dense             |  (None, 133)           |  26733   |  
-|<img width=200/> |<img width=200/>|<img width=200/>|
+|<img width="200"/> |<img width="200"/>|<img width="200"/>|
 
 Total params: 2,578,241  
 Trainable params: 2,578,241  

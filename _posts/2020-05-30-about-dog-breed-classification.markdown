@@ -12,13 +12,14 @@ In case a picture of a human is given, the most lookalike dog breed shall be out
 From Udacity, [this](https://github.com/udacity/dog-project/blob/master/dog_app.ipynb) Jupyter notebook was given as a template which guided through the development of the., in which a neural network shall implemented using keras and trained on a given dataset of dog pictures which are labeled with their breeds.   
 
 The particular steps to be taken in the notebook are:  
+
 1) [Import of the datasets](#import)  
 2) [Detection of human faces](#Detect_Human)  
 3) [Detection of dogs](#Detect_Dog)  
 4) [A convolutional neural network (CNN) for classification from scratch](#Setup_CNN)  
 5) [Training of an existing CNN for classification using transfer learning](#Existing_Transfer)  
 6) [Training of a new CNN for classification using transfer learning](#New_Transfer)  
-7) [Implementation of the classification algorithm](#Implementation)
+7) [Implementation of the classification algorithm](#Implementation)  
 8) [Test of the algorithm](#Test)  
 
 ## Import of the datasets <a name="import"></a>  

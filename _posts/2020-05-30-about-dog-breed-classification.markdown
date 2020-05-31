@@ -70,18 +70,6 @@ Since we now have the ability to find out if there is a dog or a human face on t
 we want to proceed further and guess which breed the dog or the human face is looking alike.
 The CNN trained for this purpose is implemented using [Keras](https://keras.io/).
 It has the following architecture:
-...  TODO: Add Keras summary  
-
-which was choosen after looking through the given example and several existing CNN architectures like e.g. [VGG-16](https://neurohive.io/en/popular-networks/vgg16/), [AlexNet](https://neurohive.io/en/popular-networks/alexnet-imagenet-classification-with-deep-convolutional-neural-networks/) and [ResNet](https://neurohive.io/en/popular-networks/resnet/) and trying several adaptions.
-Like in the examples, the first convolutional layers + MaxPooling layers act as a feature recognition,
-which should at first find small features like edges up to larger feature like the dog's eyes or jaws.
-To not loose information, the number of kernels is doubled after each MaxPooling layer.
-The features found by the CNN layers are then fed to dense layers which establishes the connection between features and dog breed.  
-Except for the last layer, all activation functions are set to 'relu' since it is efficient to compute
-and suppresses the "vanishing" gradients problem.
-Since we have a classification problem, the activation function of the last layer is softmax.
-The shown architecture tends to overfit fast, so the dataset is augmented using Keras' [ImageDataGenerator](https://keras.io/api/preprocessing/image/)
-and a droput layer is inserted before the dense layer.
 
 **Model summary:**  
 
@@ -107,6 +95,16 @@ Total params: 2,578,241
 Trainable params: 2,578,241  
 Non-trainable params: 0  
 
+which was choosen after looking through the given example and several existing CNN architectures like e.g. [VGG-16](https://neurohive.io/en/popular-networks/vgg16/), [AlexNet](https://neurohive.io/en/popular-networks/alexnet-imagenet-classification-with-deep-convolutional-neural-networks/) and [ResNet](https://neurohive.io/en/popular-networks/resnet/) and trying several adaptions.
+Like in the examples, the first convolutional layers + MaxPooling layers act as a feature recognition,
+which should at first find small features like edges up to larger feature like the dog's eyes or jaws.
+To not loose information, the number of kernels is doubled after each MaxPooling layer.
+The features found by the CNN layers are then fed to dense layers which establishes the connection between features and dog breed.  
+Except for the last layer, all activation functions are set to 'relu' since it is efficient to compute
+and suppresses the "vanishing" gradients problem.
+Since we have a classification problem, the activation function of the last layer is softmax.
+The shown architecture tends to overfit fast, so the dataset is augmented using Keras' [ImageDataGenerator](https://keras.io/api/preprocessing/image/)
+and a droput layer is inserted before the dense layer.  
 After training the model for 25 epochs, the achieved accuracy on the test dataset was 12.67%.
 
 ## Training of an existing CNN for classification using transfer learning <a name="Existing_Transfer"></a>
@@ -127,6 +125,10 @@ Here is a summary of the new dense layer:
 |:-----------------:|:----------------------:|:--------:|
 | Global Average Pooling   |  (None, 512)      |       0     |
 | Dense                    |  (None, 133)      |   68229     |
+
+Total params: 68,229
+Trainable params: 68,229  
+Non-trainable params: 0  
 
 Training the model just to about 40 seconds and while the accuracy on the test dataset is now 43.6% compared to 12.7% in our first try.
 
@@ -256,6 +258,8 @@ Again the results are:
 
 In the case of Leslie Nielsen,
 the function could not find a dog or human face on the image.
+
+### Discussion
 
 *Is the output better than expected? Or worse?*  
 In case dog breeds are estimated, I'm impressed by the performance of the model. The models output vector shows that in the first two cases (Labrador Retriever and Brittany) the model is very confident in it's decision, all other elements are close to zero. The image with the German Shepherd is as i guess a bit harder to interpret, because of the branch in the dogs mouth and the breed can also by humans easily be confused with similar looking a Belgian Tervuren. This is visible in the output vector, where the model estimates the breed to German Shepherd with 59% probability and Belgian Tervuren with 41%.  

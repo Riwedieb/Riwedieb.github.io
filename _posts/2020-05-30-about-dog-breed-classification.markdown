@@ -72,9 +72,11 @@ we want to proceed further and guess which breed the dog or the human face is lo
 The CNN trained for this purpose is implemented using [Keras](https://keras.io/).
 It has the following architecture:
 
+
+
 **Model summary:**  
 
-|**Layer (type)**   |      **Output Shape**  | **Param #** |
+| &nbsp;&nbsp;&nbsp;&nbsp; **Layer (type)** &nbsp;&nbsp;&nbsp;&nbsp;  |      **Output Shape**  | **Param #** |
 |:-----------------:|:----------------------:|:--------:|
 | Conv2D            |  (None, 224, 224, 4)   |   112    |
 | Conv2D            |  (None, 224, 224, 4)   |   148    |
@@ -91,6 +93,7 @@ It has the following architecture:
 | Dense             |  (None, 200)           |  40200   |  
 | Dropout           |  (None, 200)           |    0     |
 | Dense             |  (None, 133)           |  26733   |  
+|<img width=200/> |<img width=200/>|<img width=200/>|
 
 Total params: 2,578,241  
 Trainable params: 2,578,241  

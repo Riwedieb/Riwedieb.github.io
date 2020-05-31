@@ -17,7 +17,7 @@ The particular steps to be taken in the notebook are:
 3) [Detection of dogs](#Detect_Dog)  
 4) [A convolutional neural network (CNN) for classification from scratch](#Setup_CNN)  
 5) [Training of an existing CNN for classification using transfer learning](#Existing_Transfer)  
-6) [Setup & training of a new CNN for classification using transfer learning](#New_Transfer)  
+6) [Training of a new CNN for classification using transfer learning](#New_Transfer)  
 7) Implementation of the whole classification algorithm  
 8) Test of the algorithm  
 
@@ -106,7 +106,6 @@ Non-trainable params: 0
 
 After training the model for 25 epochs, the achieved accuracy on the test dataset was 12.67%.
 
-
 ## Training of an existing CNN for classification using transfer learning <a name="Existing_Transfer"></a>
 The training time was about 25 minutes on the GPU provided by Udacity while the achieved accuracy still
 leaves much space for improvements.
@@ -127,3 +126,52 @@ Here is a summary of the new dense layer:
 |<img width=200px/> | <img width=200px/>     |<img width=200px/> |  
 
 Training the model just to about 40 seconds and while the accuracy on the test dataset is now 43.6% compared to 12.7% in our first try.
+
+## Training of a new CNN for classification using transfer learning  <a name="New_Transfer"></a>
+In this section a new model will be designed and trained using transfer learning
+to further improve the accuracy above 60% on the test dataset.
+Here, not just bottleneck features of one pre-trained model are given but four.
+You can download the bottleneck features from these links:
+- [VGG-19](https://s3-us-west-1.amazonaws.com/udacity-aind/dog-project/DogVGG19Data.npz) bottleneck features
+- [ResNet-50](https://s3-us-west-1.amazonaws.com/udacity-aind/dog-project/DogResnet50Data.npz) bottleneck features
+- [Inception](https://s3-us-west-1.amazonaws.com/udacity-aind/dog-project/DogInceptionV3Data.npz) bottleneck features
+- [Xception](https://s3-us-west-1.amazonaws.com/udacity-aind/dog-project/DogXceptionData.npz) bottleneck features
+
+According to the task definition, just bottleneck features of one model should be used for training,
+but out of curiosity I decided to evaluate all four models.  
+I checked which output layers architecture the pre-trained CNNs use, see e.g. [InceptionV3](https://software.intel.com/content/www/us/en/develop/articles/inception-v3-deep-convolutional-architecture-for-classifying-acute-myeloidlymphoblastic.html).
+These CNNs use 2-3 dense layers at their outputs so it was obvious to decide for a similar architecture,
+in this case three dense layers.
+I tried different dense layer sizes like e.g. 1024-2048 nodes which where used in the
+pre-trained models but it turned out that 512 nodes gave the best results.
+Depending on whether the bottleneck features had a 2D shape (VGG19, Xception, InceptionV3) or not (ResNet-50)
+I used GlobalAveragePooling2D() (GAP) or Flatten(), respectively, as interfacing layer:
+
+**Model summary:**  
+
+| **Layer (type)**  |      **Output Shape**  | **Param #** |
+|:--------------------------------:|:-----------------:|:--------:|
+| Global Average Pooling / Dense   |  (None, 512)      |       0     |   
+| Dropout                          |  (None, 512)      |       0     |   
+| Dense                            |  (None, 512)      |   262656    |
+| Dropout                          |  (None, 512)      |       0     |
+| Dense                            |  (None, 512)      |   262656    |
+| Dropout                          |  (None, 512)      |       0     |
+| Dense                            |  (None, 133)      |   68229     |
+
+Total params: 593,541
+Trainable params: 593,541
+Non-trainable params: 0
+
+After the training has finished, all models where evaluated on test data.
+Here are the resulting accurracies:
+- VGG19: 73.9%
+- ResNet-50: 79.3%
+- InceptionV3: 81,1%
+- Xception: TODO
+
+So the Xception model is taken for further procedure.  
+The last step of the section is to implement the prediction function 'breed_predictor()',
+where the pre-trained Xception model is combined with the new output layers.
+The function then simply takes a path to an image and returns the three most probable
+dog breeds together with their estimated probabilities.

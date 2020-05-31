@@ -102,7 +102,6 @@ and a droput layer is inserted before the dense layer.
 | Dense             |  (None, 200)           |  40200   |  
 | Dropout           |  (None, 200)           |    0     |
 | Dense             |  (None, 133)           |  26733   |  
-|<img width=200px/> | <img width=200px/>     |<img width=200px/> |  
 
 Total params: 2,578,241  
 Trainable params: 2,578,241  
@@ -123,11 +122,11 @@ The combination of pre-trained CNN and new dense layer can then form a new model
 Here is a summary of the new dense layer:
 
 **Model summary:**  
+
 |**Layer (type)**   |      **Output Shape**  | **Param #** |
 |:-----------------:|:----------------------:|:--------:|
 | Global Average Pooling   |  (None, 512)      |       0     |
 | Dense                    |  (None, 133)      |   68229     |
-|<img width=200px/> | <img width=200px/>     |<img width=200px/> |  
 
 Training the model just to about 40 seconds and while the accuracy on the test dataset is now 43.6% compared to 12.7% in our first try.
 

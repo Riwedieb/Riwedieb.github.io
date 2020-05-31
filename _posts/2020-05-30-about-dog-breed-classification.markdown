@@ -189,3 +189,33 @@ Its return values, the three most probable dog breeds together with their estima
 are then printed to screen.
 
 ## Test of the algorithm <a name="Test"></a>
+In this last section, the behavior of `dog_human_breed_predictor()` is evaluated for several test images.
+At first we try to
+
+<p align="center">
+  <img align="center" src="/images/Schaeferhund.png" width="225"/>
+  <img src="/images/Labrador_retriever.png" width="225"/>
+
+ <img src="/images/Brittany.png" width="225"/>
+ <figcaption>Fig.1 From left to right: German Shepherd, Labrador Retriever, Brittany</figcaption>
+
+</p>
+
+
+
+
+With these results, we can answer two key questions:  
+
+*Is the output better than expected? Or worse?*  
+In case dog breeds are estimated, I'm impressed by the performance of the model. The models output vector shows that in the first two cases (Labrador Retriever and Brittany) the model is very confident in it's decision, all other elements are close to zero. The image with the German Shepherd is as i guess a bit harder to interpret, because of the branch in the dogs mouth and the breed can also by humans easily be confused with similar looking a Belgian Tervuren. This is visible in the output vector, where the model estimates the breed to German Shepherd with 59% probability and Belgian Tervuren with 41%.  
+
+For images of humans the model doesn't seem to create a stable output for each individual. There are two images of Rowan Atkinson where the model one time predicted a Dachshund and for the other image an Afghan Hound. The reason for this is unclear.
+
+Regarding the cat image i am wondering why the `face_detector()` triggered.
+A reason could be because it uses haar wavelets which may create a characteristic signal when convoluted with the cat's tiger stripes(?) Could be interesting for further research.
+
+*What could be ideas for improvements:*  
+1) If multiple persons and/or dogs are visible, they should be labeled seperately. E.g. in the last picture, two dogs and one woman are visible. The woman ist detected by the `face_detector()` function, while the dog breed is most probably predicted from the two dogs to her side. A first model could be used to extract the region in a picture where there is (mostly) just a human or dog visible and then passes it to the `breed_predictor()` function.  
+2) For a better seperation of humans and dogs the outputs probabilities of face_detector and dog_detector could be compared to choose the one with the higher activation signal.  
+3) The face_detector() which uses Haar Wavelets could be replaced by a CNN to make it less prone to false positives on e.g. cats, see example below.  
+4) More time could be invested in fine tuning the networks architecture e.g. different number of dense layers and different dense layer sizes.

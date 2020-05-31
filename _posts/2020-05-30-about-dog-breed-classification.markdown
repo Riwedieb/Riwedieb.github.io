@@ -18,8 +18,8 @@ The particular steps to be taken in the notebook are:
 4) [A convolutional neural network (CNN) for classification from scratch](#Setup_CNN)  
 5) [Training of an existing CNN for classification using transfer learning](#Existing_Transfer)  
 6) [Training of a new CNN for classification using transfer learning](#New_Transfer)  
-7) Implementation of the whole classification algorithm  
-8) Test of the algorithm  
+7) [Implementation of the classification algorithm](#Implementation)
+8) [Test of the algorithm](#Test)  
 
 ## Import of the datasets <a name="import"></a>  
 There are two datasets available, the first with 8351 dog images in total which are labeled with 133 dog breeds.
@@ -168,10 +168,24 @@ Here are the resulting accurracies:
 - VGG19: 73.9%
 - ResNet-50: 79.3%
 - InceptionV3: 81,1%
-- Xception: TODO
+- Xception: 83.9%
 
 So the Xception model is taken for further procedure.  
-The last step of the section is to implement the prediction function 'breed_predictor()',
+The last step of the section is to implement the prediction function `breed_predictor()`,
 where the pre-trained Xception model is combined with the new output layers.
 The function then simply takes a path to an image and returns the three most probable
 dog breeds together with their estimated probabilities.
+
+## Implementation of the whole classification algorithm <a name="Implementation"></a>
+For the use in e.g. a web app,
+the prediction function shall at first determine whether a given image contains a human, dog or neither.
+In case a dog a or a human is found, the most likely breeds shall be returned.
+If neither is detected, the function should return an error message.  
+The function `dog_human_breed_predictor()` implements these requirements.
+It takes the functions `face_detector()` and `dog_detector()` implemented in the sections
+before for detecting dogs and human faces.
+If they respond positive, the `breed_predictor()` function is called.
+Its return values, the three most probable dog breeds together with their estimated probabilities,
+are then printed to screen.
+
+## Test of the algorithm <a name="Test"></a>

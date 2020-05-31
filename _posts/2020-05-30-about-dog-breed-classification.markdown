@@ -28,6 +28,10 @@ The other dataset contains 13233 images of human faces.
 Here is an example from each dataset:  
 <p align="center">
   <img align="center" src="/images/Brittany_02625.jpg" width="225"/> <img src="/images/face_example.png" width="225"/>
+
+  <figcaption align="center">
+  Fig.1 Left: example of a dog in the dataset. Right: Example of a human face in the dataset.
+  </figcaption>
 </p>
 
 ## Detection of human faces <a name="Detect_Human"></a>
@@ -190,21 +194,69 @@ are then printed to screen.
 
 ## Test of the algorithm <a name="Test"></a>
 In this last section, the behavior of `dog_human_breed_predictor()` is evaluated for several test images.
-At first we try to
+At first we try to predict the breeds of three dog images, see Fig. 2.
 
 <p align="center">
   <img align="center" src="/images/Schaeferhund.png" width="225"/>
   <img src="/images/Labrador_retriever.png" width="225"/>
 
  <img src="/images/Brittany.png" width="225"/>
- <figcaption>Fig.1 From left to right: German Shepherd, Labrador Retriever, Brittany</figcaption>
-
+ <figcaption align="center">
+  Fig. 2 From left to right: German Shepherd, Labrador Retriever, Brittany
+ </figcaption>
 </p>
 
+All three images where classified as dogs.
+The three highest probabilities for the breeds predicted by the function for the images are:
 
+|  **Image**         | **First**               | **Second**           | **Third**                  |
+|:------------------:|:-----------------------:|:--------------------:|:--------------------------:|
+| German Shepherd    | German Shepherd, 99%    | Belgian Malinois, 0% | Belgian tervuren, 0%       |
+| Labrador Retriever | Labrador retriever, 100%| Pointer, 0%          | Anatolian shepherd Dog, 0% |
+| Brittany           | Brittany, 100%    |Irish red and white setter, 0% | Cavalier king charles spaniel. 0%
 
+Looks like the dog breed detection works quite good, so let's try it on images of humans.
+<p align="center">
+  <img align="center" src="/images/Bean1.png" width="225"/>
+  <img src="/images/Bean2.png" width="225"/>
+  <img src="/images/Nielsen1.png" width="225"/>
 
-With these results, we can answer two key questions:  
+ <figcaption align="center">
+  Fig. 3 From left to right: Mr. Bean, Mr. Bean with bear, Leslie Nielsen.
+ </figcaption>
+</p>
+
+All three images where classified as human faces.
+The three highest probabilities for the breeds predicted by the function for the images are:
+
+|  **Image**         | **First**               | **Second**           | **Third**                  |
+|:------------------:|:-----------------------:|:--------------------:|:--------------------------:|
+| Mr. Bean    | Entlebucher mountain dog, 34%  | Poodle, 10%          | Australian cattle dog, 10%       |
+| Mr. Bean w. bear | Chinese_crested, 56%      | Poodle, 43%          | Cavalier king charles spaniel, 0% |
+| L. Nielsen       | Afghan hound, 80%         | Poodle, 17%          | Chinese crested 4% |
+
+And the last set of images is intended to confuse the algorithm a bit :-)  
+
+<p align="center">
+  <img align="center" src="/images/cat.png" width="225"/>
+  <img src="/images/fish.png" width="225"/>
+  <img src="/images/woman.png" width="225"/>
+
+ <figcaption align="center">
+  Fig. 4 From left to right: Cat, L. Nielsen with fish, woman with dogs.
+ </figcaption>
+</p>
+
+Again the results are:  
+
+|  **Image**         | **First**               | **Second**           | **Third**                  |
+|:------------------:|:-----------------------:|:--------------------:|:--------------------------:|
+| Cat                | French bulldog, 84%     | Cane corso, 6%       | Curly-coated retriever, 3% |
+| L. Nielsen with fish | NA                      | NA                   | NA                         |
+| Woman with dogs    | Afghan hound, 100%      | Leonberger, 0%       | Borzoi 0%                  |
+
+In the case of Leslie Nielsen,
+the function could not find a dog or human face on the image.
 
 *Is the output better than expected? Or worse?*  
 In case dog breeds are estimated, I'm impressed by the performance of the model. The models output vector shows that in the first two cases (Labrador Retriever and Brittany) the model is very confident in it's decision, all other elements are close to zero. The image with the German Shepherd is as i guess a bit harder to interpret, because of the branch in the dogs mouth and the breed can also by humans easily be confused with similar looking a Belgian Tervuren. This is visible in the output vector, where the model estimates the breed to German Shepherd with 59% probability and Belgian Tervuren with 41%.  

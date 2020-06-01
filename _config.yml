@@ -3,7 +3,7 @@
 #
 
 # Name of your site (displayed in the header)
-name: Riwedieb
+name: Riwedieb's Project Blog
 
 # Short bio or description (displayed in the header)
 description: Blog of Udacity project results
@@ -21,7 +21,7 @@ footer-links:
   email:
   facebook:
   flickr:
-  github: Riwedieb/Udacity_Boston_Analysis
+  github: Riwedieb
   instagram:
   linkedin:
   pinterest:

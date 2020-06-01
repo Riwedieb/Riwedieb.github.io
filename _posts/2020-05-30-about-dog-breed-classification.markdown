@@ -33,10 +33,11 @@ table th:nth-of-type(4) {
 }
 </style>
 
-# Introduction
-The project described in the following is part of Udacity’s Data Scientist nanodegree.
+The project described in the following is part of Udacity’s Data Scientist nano-degree and hosted in [**this**](https://github.com/Riwedieb/dog_app) github repository.
 The main goal of the project is to develop an algorithm which classifies the breed of given dog images.
 In case a picture of a human is given, the most lookalike dog breed shall be output.  
+
+## Introduction
 
 From Udacity, [this](https://github.com/udacity/dog-project/blob/master/dog_app.ipynb) Jupyter notebook was given as a template which guided through the development of the., in which a neural network shall implemented using keras and trained on a given dataset of dog pictures which are labeled with their breeds.   
 
@@ -67,7 +68,7 @@ Here is an example from each dataset:
 ## Detection of human faces <a name="Detect_Human"></a>
 At first the algorithm shall check if it got an image of a human.
 Hence in this step we try an already existing face recognition algorithm from the openCV library.
-The algorithm decomposes gray-scale the image using Haar Wavelets at first and then leads found feature to a cascade of classifiers.
+The algorithm decomposes gray-scale images using Haar Wavelets at first and then leads found feature to a cascade of classifiers.
 This is also called the [Viola-Jones method](https://docs.opencv.org/3.4/db/d28/tutorial_cascade_classifier.html).
 Testing the algorithm on a dataset of 100 dog images and 100 human face images, shows that:
 * 100% of the human face images where correctly detected as humans
@@ -127,7 +128,7 @@ Total params: 2,578,241
 Trainable params: 2,578,241  
 Non-trainable params: 0  
 
-which was choosen after looking through the given example and several existing CNN architectures like e.g. [VGG-16](https://neurohive.io/en/popular-networks/vgg16/), [AlexNet](https://neurohive.io/en/popular-networks/alexnet-imagenet-classification-with-deep-convolutional-neural-networks/) and [ResNet](https://neurohive.io/en/popular-networks/resnet/) and trying several adaptions.
+The architecture was choosen after looking through the given example and several existing CNN architectures like e.g. [VGG-16](https://neurohive.io/en/popular-networks/vgg16/), [AlexNet](https://neurohive.io/en/popular-networks/alexnet-imagenet-classification-with-deep-convolutional-neural-networks/) and [ResNet](https://neurohive.io/en/popular-networks/resnet/) and trying several adaptions.
 Like in the examples, the first convolutional layers + MaxPooling layers act as a feature recognition,
 which should at first find small features like edges up to larger feature like the dog's eyes or jaws.
 To not loose information, the number of kernels is doubled after each MaxPooling layer.
@@ -298,7 +299,7 @@ In case breeds are estimated on dog images, I'm impressed by the performance of 
 For images of humans the model doesn't seem to create a stable output for each individual. There are two images of Mr. Bean where the model one time predicted a Entlebucher mountain dog and for the other image an Chinese crested dog. The reason for this is unclear.
 
 Regarding the cat image i am wondering why the `face_detector()` triggered.
-A reason could be because it uses haar wavelets which may create a characteristic signal when convoluted with the cat's tiger stripes(?) 
+A reason could be because it uses haar wavelets which may create a characteristic signal when convoluted with the cat's tiger stripes(?)
 Could be interesting for further research.
 
 *What could be ideas for improvements:*  

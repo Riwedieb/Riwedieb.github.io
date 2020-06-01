@@ -38,7 +38,7 @@ table th:nth-of-type(4) {
 
 ## Introduction
 
-From Udacity, [this](https://github.com/udacity/dog-project/blob/master/dog_app.ipynb) Jupyter notebook was given as a template which guided through the development of the., in which a neural network shall implemented using keras and trained on a given dataset of dog pictures which are labeled with their breeds.   
+From Udacity, [this](https://github.com/udacity/dog-project/blob/master/dog_app.ipynb) Jupyter notebook was given as a template which guided through the development of the dog breed classifier, in which a neural network shall be implemented using keras and trained on a given dataset of dog pictures which are labeled with their breeds.   
 
 The particular steps to be taken in the notebook are:  
 

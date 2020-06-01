@@ -4,6 +4,35 @@ title: "How to build your own dog breed classifier"
 date: "2020-05-30 15:01:08 +0200"
 ---
 
+<style>
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:2px solid #ffffff;
+}
+
+th{
+    border:2px solid #000000;
+}
+
+td{
+    border:1px solid #000000;
+}
+
+table th:first-of-type {
+    width: 10%;
+}
+table th:nth-of-type(2) {
+    width: 10%;
+}
+table th:nth-of-type(3) {
+    width: 10%;
+}
+table th:nth-of-type(4) {
+    width: 10%;
+}
+</style>
+
 # Introduction
 The project described in the following is part of Udacity’s Data Scientist nanodegree.
 The main goal of the project is to develop an algorithm which classifies the breed of given dog images.
@@ -93,7 +122,6 @@ It has the following architecture:
 | Dense             |  (None, 200)           |  40200   |  
 | Dropout           |  (None, 200)           |    0     |
 | Dense             |  (None, 133)           |  26733   |  
-|<img width="200"/> |<img width="200"/>|<img width="200"/>|
 
 Total params: 2,578,241  
 Trainable params: 2,578,241  
@@ -130,7 +158,7 @@ Here is a summary of the new dense layer:
 | Global Average Pooling   |  (None, 512)      |       0     |
 | Dense                    |  (None, 133)      |   68229     |
 
-Total params: 68,229
+Total params: 68,229  
 Trainable params: 68,229  
 Non-trainable params: 0  
 
@@ -168,9 +196,9 @@ I used GlobalAveragePooling2D() (GAP) or Flatten(), respectively, as interfacing
 | Dropout                          |  (None, 512)      |       0     |
 | Dense                            |  (None, 133)      |   68229     |
 
-Total params: 593,541
-Trainable params: 593,541
-Non-trainable params: 0
+Total params: 593,541  
+Trainable params: 593,541  
+Non-trainable params: 0  
 
 After the training has finished, all models where evaluated on test data.
 Here are the resulting accurracies:
@@ -202,13 +230,12 @@ In this last section, the behavior of `dog_human_breed_predictor()` is evaluated
 At first we try to predict the breeds of three dog images, see Fig. 2.
 
 <p align="center">
-  <img align="center" src="/images/Schaeferhund.png" width="225"/>
-  <img src="/images/Labrador_retriever.png" width="225"/>
-
- <img src="/images/Brittany.png" width="225"/>
- <figcaption align="center">
+  <img align="center" src="/images/Schaeferhund.png" width="300"/>
+  <img src="/images/Labrador_retriever.png" width="300"/>
+  <img src="/images/Brittany.png" width="300"/>
+  <figcaption align="center">
   Fig. 2 From left to right: German Shepherd, Labrador Retriever, Brittany
- </figcaption>
+  </figcaption>
 </p>
 
 All three images where classified as dogs.
@@ -216,18 +243,18 @@ The three highest probabilities for the breeds predicted by the function for the
 
 |  **Image**         | **First**               | **Second**           | **Third**                  |
 |:------------------:|:-----------------------:|:--------------------:|:--------------------------:|
-| German Shepherd    | German Shepherd, 99%    | Belgian Malinois, 0% | Belgian tervuren, 0%       |
-| Labrador Retriever | Labrador retriever, 100%| Pointer, 0%          | Anatolian shepherd Dog, 0% |
+| German Shepherd    | German shepherd, 99%    | Belgian malinois, 0% | Belgian tervuren, 0%       |
+| Labrador Retriever | Labrador retriever, 100%| Pointer, 0%          | Anatolian shepherd dog, 0% |
 | Brittany           | Brittany, 100%    |Irish red and white setter, 0% | Cavalier king charles spaniel. 0%
 
 Looks like the dog breed detection works quite good, so let's try it on images of humans.
 <p align="center">
-  <img align="center" src="/images/Bean1.png" width="225"/>
-  <img src="/images/Bean2.png" width="225"/>
-  <img src="/images/Nielsen1.png" width="225"/>
+  <img align="center" src="/images/Bean1.png" width="300"/>
+  <img src="/images/Bean2.png" width="300"/>
+  <img src="/images/Nielsen1.png" width="300"/>
 
  <figcaption align="center">
-  Fig. 3 From left to right: Mr. Bean, Mr. Bean with bear, Leslie Nielsen.
+  Fig. 3 From left to right: Mr. Bean, Mr. Bean with bear, Lt. Frank Drebin.
  </figcaption>
 </p>
 
@@ -237,18 +264,18 @@ The three highest probabilities for the breeds predicted by the function for the
 |  **Image**         | **First**               | **Second**           | **Third**                  |
 |:------------------:|:-----------------------:|:--------------------:|:--------------------------:|
 | Mr. Bean    | Entlebucher mountain dog, 34%  | Poodle, 10%          | Australian cattle dog, 10%       |
-| Mr. Bean w. bear | Chinese_crested, 56%      | Poodle, 43%          | Cavalier king charles spaniel, 0% |
+| Mr. Bean w. bear | Chinese crested, 56%      | Poodle, 43%          | Cavalier king charles spaniel, 0% |
 | L. Nielsen       | Afghan hound, 80%         | Poodle, 17%          | Chinese crested 4% |
 
 And the last set of images is intended to confuse the algorithm a bit :-)  
 
 <p align="center">
-  <img align="center" src="/images/cat.png" width="225"/>
-  <img src="/images/fish.png" width="225"/>
-  <img src="/images/woman.png" width="225"/>
+  <img align="center" src="/images/cat.png" width="300"/>
+  <img src="/images/fish.png" width="300"/>
+  <img src="/images/woman.png" width="300"/>
 
  <figcaption align="center">
-  Fig. 4 From left to right: Cat, L. Nielsen with fish, woman with dogs.
+  Fig. 4 From left to right: Cat, Lt. Frank Drebin with fish, woman with dogs.
  </figcaption>
 </p>
 
@@ -257,21 +284,22 @@ Again the results are:
 |  **Image**         | **First**               | **Second**           | **Third**                  |
 |:------------------:|:-----------------------:|:--------------------:|:--------------------------:|
 | Cat                | French bulldog, 84%     | Cane corso, 6%       | Curly-coated retriever, 3% |
-| L. Nielsen with fish | NA                      | NA                   | NA                         |
+| F. Drebin with fish | NA                      | NA                   | NA                         |
 | Woman with dogs    | Afghan hound, 100%      | Leonberger, 0%       | Borzoi 0%                  |
 
-In the case of Leslie Nielsen,
+In the case of Lt. Frank Drebin,
 the function could not find a dog or human face on the image.
 
 ### Discussion
 
 *Is the output better than expected? Or worse?*  
-In case dog breeds are estimated, I'm impressed by the performance of the model. The models output vector shows that in the first two cases (Labrador Retriever and Brittany) the model is very confident in it's decision, all other elements are close to zero. The image with the German Shepherd is as i guess a bit harder to interpret, because of the branch in the dogs mouth and the breed can also by humans easily be confused with similar looking a Belgian Tervuren. This is visible in the output vector, where the model estimates the breed to German Shepherd with 59% probability and Belgian Tervuren with 41%.  
+In case breeds are estimated on dog images, I'm impressed by the performance of the model. The models output vector shows that in the first two cases (Labrador Retriever and Brittany) the model is very confident in it's decision, all other elements are close to zero. The image with the German Shepherd is as I guess a bit harder to interpret, because of the branch in the dogs mouth and the breed can also by humans easily be confused with similar looking a Belgian tervuren and Belgian malinois. This is visible in the output vector, where the model estimates the breed to German Shepherd with 99% probability but also the Belgian Tervuren and the Belgian malinois appears as next probable category.  
 
-For images of humans the model doesn't seem to create a stable output for each individual. There are two images of Rowan Atkinson where the model one time predicted a Dachshund and for the other image an Afghan Hound. The reason for this is unclear.
+For images of humans the model doesn't seem to create a stable output for each individual. There are two images of Mr. Bean where the model one time predicted a Entlebucher mountain dog and for the other image an Chinese crested dog. The reason for this is unclear.
 
 Regarding the cat image i am wondering why the `face_detector()` triggered.
-A reason could be because it uses haar wavelets which may create a characteristic signal when convoluted with the cat's tiger stripes(?) Could be interesting for further research.
+A reason could be because it uses haar wavelets which may create a characteristic signal when convoluted with the cat's tiger stripes(?) 
+Could be interesting for further research.
 
 *What could be ideas for improvements:*  
 1) If multiple persons and/or dogs are visible, they should be labeled seperately. E.g. in the last picture, two dogs and one woman are visible. The woman ist detected by the `face_detector()` function, while the dog breed is most probably predicted from the two dogs to her side. A first model could be used to extract the region in a picture where there is (mostly) just a human or dog visible and then passes it to the `breed_predictor()` function.  

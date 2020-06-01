@@ -3,6 +3,9 @@ layout: post
 title: "How to build your own dog breed classifier"
 date: "2020-05-30 15:01:08 +0200"
 ---
+The project described in the following is part of Udacity’s Data Scientist nano-degree and hosted in [**this**](https://github.com/Riwedieb/dog_app) github repository.
+The main goal of the project is to develop an algorithm which classifies the breed of given dog images.
+In case a picture of a human is given, the most lookalike dog breed shall be output.  
 
 <style>
 table{
@@ -32,10 +35,6 @@ table th:nth-of-type(4) {
     width: 10%;
 }
 </style>
-
-The project described in the following is part of Udacity’s Data Scientist nano-degree and hosted in [**this**](https://github.com/Riwedieb/dog_app) github repository.
-The main goal of the project is to develop an algorithm which classifies the breed of given dog images.
-In case a picture of a human is given, the most lookalike dog breed shall be output.  
 
 ## Introduction
 
